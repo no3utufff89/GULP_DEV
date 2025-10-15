@@ -1,0 +1,76 @@
+@use '../vars' as *;
+
+.action-element {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.192px;
+    line-height: 20px;
+    padding: 10px 22px;
+    background-color: #fdfdfd;
+    border-radius: 4px;
+    color: #1a3e3e;
+    display: block;
+    transition: $transition;
+    border: 1px solid transparent;
+
+    @include laptop {
+        font-size: 12px;
+    }
+    &_colored {
+        background-color: #1a3e3e;
+        color: #fdfdfd;
+        &:hover {
+            background-color: #fff;
+            color: #1a3e3e;
+            border-color: #1a3e3e;
+        }
+    }
+    &_large {
+        padding: 16px 36px;
+        @include laptop {
+            padding: 12px 12px;
+        }
+    }
+}
+.logo-link {
+    display: flex;
+    flex-shrink: 0;
+    img {
+        width: 137px;
+        height: 72px;
+    }
+}
+.play-btn {
+    width: 50px;
+    height: 50px;
+    background-color: #fdfdfd99;
+    border-radius: 50%;
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+}
+.social-list {
+    &__item {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+    &__link {
+        transition: $transition;
+        &:hover {
+            svg {
+                color: #f2be22;
+            }
+        }
+        svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+            transition: $transition;
+        }
+    }
+}

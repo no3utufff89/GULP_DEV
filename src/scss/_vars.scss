@@ -1,0 +1,34 @@
+//default colours
+$black: #000;
+$white: #fff;
+$accentColor: #f2be22;
+//layout colours
+//transitions
+$transition: 0.3s ease-in-out;
+//rounds
+$round-s: 8px;
+$round-m: 20px;
+$round-l: 32px;
+$round-full: 50%;
+//Media queriess
+$mobile: 650px;
+$tablet: 980px;
+$laptop: 1200px;
+$transition: 0.3s ease-in-out;
+
+@mixin tablet {
+    @media (max-width: #{$tablet}) {
+        @content;
+    }
+}
+@mixin laptop {
+    @media (max-width: #{$laptop}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}

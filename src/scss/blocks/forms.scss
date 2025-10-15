@@ -1,0 +1,166 @@
+@use '../vars' as *;
+
+.program-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    column-gap: 24px;
+
+    @media screen and (max-width: 1040px) {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+    }
+    @include mobile {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    &__btn {
+        align-self: flex-start;
+    }
+    &__input-wrapper {
+        border-radius: 8px;
+        border: 1px solid #fdfdfd;
+        padding-inline: 16px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+
+        @include laptop {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+        &::after {
+            position: relative;
+            display: block;
+            content: '';
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            background-position: center;
+            @include laptop {
+                width: 15px;
+                height: 15px;
+            }
+        }
+        &_select {
+            &::after {
+                background-image: url('@img/icons/wrrow_icon.svg');
+            }
+        }
+        &_date {
+            &::after {
+                background-image: url('@img/icons/date_icon.svg');
+            }
+        }
+    }
+    &__fieldset {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+    }
+    &__label {
+        padding-inline: 8px;
+        color: #fdfdfd;
+        font-size: 14px;
+        line-height: 150%;
+        @include laptop {
+            font-size: 12px;
+        }
+    }
+    span.program-form__current-input-text {
+        color: #fdfdfd;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 150%;
+        pointer-events: none;
+        @include laptop {
+            font-size: 13px;
+        }
+    }
+}
+.callback-form {
+    @media screen and (max-width: 1250px) {
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+        align-items: center;
+    }
+    &__fieldset {
+        display: grid;
+        column-gap: 16px;
+        margin-bottom: 8px;
+        @media screen and (max-width: 1250px) {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 24px;
+            margin-bottom: 0;
+            width: 100%;
+            max-width: 100%;
+            align-items: center;
+        }
+    }
+    &__label {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+        grid-column: 1/2;
+        grid-row: 1/2;
+        @media screen and (max-width: 1250px) {
+            width: 100%;
+        }
+        span {
+            color: #18121e;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+    }
+    &__input {
+        background-color: #f3f5f4;
+        padding: 16px 12px;
+        border-radius: 4px;
+        width: 280px;
+        @media screen and (max-width: 1250px) {
+            max-width: none;
+            width: 100%;
+        }
+        &::placeholder {
+            color: #18121e;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 20px;
+        }
+    }
+    &__btn {
+        grid-column: 2/3;
+        grid-row: 1/2;
+        align-self: flex-end;
+        height: 53px;
+        max-width: max-content;
+        @media screen and (max-width: 1250px) {
+            margin: 0 auto;
+        }
+        @include mobile {
+            width: 100%;
+            max-width: none;
+        }
+    }
+    &__agree-text {
+        color: #18121e;
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
+        @media screen and (max-width: 1250px) {
+        }
+        a {
+            text-decoration: underline;
+        }
+    }
+}

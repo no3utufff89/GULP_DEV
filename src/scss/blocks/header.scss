@@ -1,0 +1,26 @@
+@use '../vars' as *;
+
+.header {
+    padding-top: 16px;
+    @include mobile {
+        padding-bottom: 80px;
+    }
+    &__row {
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__logo-link {
+        margin-right: auto;
+    }
+    &__nav {
+        margin-right: 50px;
+        @include laptop {
+            display: none;
+        }
+    }
+    &__action-element {
+        @include laptop {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+@use '../vars' as *;
+
+.section-title {
+    color: #f2be22;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 20px;
+    @include mobile {
+        font-size: 16px;
+    }
+}
+.section-subtitle {
+    color: #18121e;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 120%;
+    @include mobile {
+        font-size: 24px;
+    }
+}
+.text {
+    color: #18121e;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+    @include mobile {
+        font-size: 16px;
+    }
+    &_small {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
