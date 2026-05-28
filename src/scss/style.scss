@@ -1,0 +1,11 @@
+@use 'base/vars';
+@use 'base/reset';
+@use 'base/global';
+@use 'base/fonts';
+@use 'typography';
+//COMPONENTS
+@use 'static/header';
+//NAV
+@use 'base/sections';
+@use 'static/footer';
+

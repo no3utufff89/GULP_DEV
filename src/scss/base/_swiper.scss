@@ -1,0 +1,77 @@
+@use '../base/vars' as *;
+/* ===== ОБЯЗАТЕЛЬНЫЕ СТИЛИ SWIPER ===== */
+.swiper {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  transform: translate3d(0, 0, 0);
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  user-select: none;
+}
+
+.slider-btn {
+  width: 40px;
+  height: 40px;
+  box-shadow: $shadow;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: $transition;
+
+  &_prev, &_next {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    transform: translateY(-50%);
+
+    &:hover {
+      svg {
+        color: $color-primary;
+      }
+
+
+    }
+  }
+
+  &_prev {
+    left: -10px;
+
+    &:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+  }
+
+  &_next {
+    right: -10px;
+
+    &:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  svg {
+    width: 40px;
+    height: 40px;
+    color: $color-text-primary;
+    transition: $transition;
+  }
+}

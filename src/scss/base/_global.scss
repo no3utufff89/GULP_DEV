@@ -1,0 +1,580 @@
+@use 'vars' as *;
+
+// Базовые стили для body
+body {
+  font-family: $font;
+  font-weight: 400;
+  color:$black;
+  background-color: $white;
+  font-size: 1rem;
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+// Класс для скрытия элементов визуально, но оставления для скринридеров
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+
+  // Гарантированное скрытие
+  &:not(:focus):not(:active) {
+    position: absolute !important;
+  }
+}
+
+// Скрыть элемент полностью (даже от скринридеров)
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+// Сброс и базовые стили для кнопок
+button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+  user-select: none;
+
+  // Убираем дефолтное оформление на мобильных
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+
+  // Для состояний disabled
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// Базовый контейнер
+.container {
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 0 15px;
+  @include tablet {
+    max-width: $tablet;
+    padding: 0 20px;
+  }
+  @include xlTablet {
+    max-width: 970px;
+  }
+  @include dt {
+    max-width: 1300px;
+  }
+
+
+}
+
+.created {
+  color: white;
+  @include tablet {
+    grid-row: 4/5;
+    grid-column: 1/4;
+    align-self: self-end;
+    text-align: right;
+  }
+  @include dt {
+    grid-row: 3/4;
+    grid-column: 1/3;
+    align-self: self-end;
+    text-align: right;
+  }
+
+  span.author {
+    font-size: 14px;
+    color: $white;
+    line-height: 130%;
+
+    span {
+      color: orange;
+      font-size: 22px;
+    }
+  }
+}
+
+.rights {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 125%;
+  color: #fff;
+  @include tablet {
+    grid-row: 4/5;
+    grid-column: 1/4;
+    align-self: self-start;
+  }
+  @include dt {
+    grid-row: 3/4;
+    grid-column: 1/3;
+    align-self: self-start;
+  }
+}
+
+.section {
+}
+
+// Утилитарные классы для текста
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+// Классы для управления overflow
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+// Классы для flexbox
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Классы для grid
+.grid {
+  display: grid;
+}
+
+// Классы для позиционирования
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.sticky {
+  position: sticky;
+}
+
+// Класс для полной ширины/высоты
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+// Классы для курсора
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+// Классы для z-index (настройте под ваш проект)
+.z-1 {
+  z-index: 1;
+}
+
+.z-2 {
+  z-index: 2;
+}
+
+.z-3 {
+  z-index: 3;
+}
+
+.z-999 {
+  z-index: 999;
+}
+
+.z-9999 {
+  z-index: 9999;
+}
+
+.gap-x-10 {
+  column-gap: 10px;
+}
+
+.gap-x-15 {
+  column-gap: 14px;
+}
+
+.gap-x-20 {
+  column-gap: 20px;
+}
+
+// Состояние hover только для устройств с hover
+@media (hover: hover) and (pointer: fine) {
+  .hover-opacity {
+    &:hover {
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  .hover-scale {
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+// Плавный скролл для устройств без reduced-motion
+@media (prefers-reduced-motion: no-preference) {
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
+// Отключение анимаций для пользователей с reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Общие стили для ссылок (опционально)
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+
+  // Для мобильных устройств
+  @media (max-width: 768px) {
+    touch-action: manipulation;
+  }
+}
+
+// Базовые стили для изображений
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-style: italic; // Для alt текста
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
+}
+
+// Lazy loading изображений
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+// Стили для selection (выделение текста)
+
+
+::-moz-selection {
+  background-color: rgba($black, 0.2);
+  color: inherit;
+}
+
+// Стили для placeholder
+::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #999;
+}
+
+::-ms-input-placeholder {
+  color: #999;
+}
+
+// Скрытие стрелок у number input
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// Стили для autofill
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: $black;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+// Класс для clearfix
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+// Aspect ratio контейнеры (для видео, iframe)
+.aspect-ratio-16-9 {
+  position: relative;
+  padding-bottom: 56.25%; // 16:9
+  height: 0;
+  overflow: hidden;
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.aspect-ratio-4-3 {
+  position: relative;
+  padding-bottom: 75%; // 4:3
+  height: 0;
+  overflow: hidden;
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Классы для теней (опционально)
+.shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+// Классы для border-radius
+.rounded {
+  border-radius: 4px;
+}
+
+.rounded-lg {
+  border-radius: 8px;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+// Стили для фокуса (если убрали outline в reset)
+.focus-visible {
+  &:focus-visible {
+    outline: 2px solid black;
+    outline-offset: 2px;
+  }
+}
+
+// Класс для обрезки текста с многоточием
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Многострочная обрезка текста
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Print стили
+@media print {
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+// Оверлей для затемнения фона
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 99;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+//============UNIVERSAL-CHECKBOX===============
+.checkbox-custom {
+  position: relative;
+  display: inline-flex; // Изменено с block на inline-flex
+  align-items: center; // Для выравнивания с текстом
+  gap: 8px; // Отступ между чекбоксом и текстом
+  cursor: pointer;
+  user-select: none;
+  min-height: 20px;
+
+  // Вариант с display: flex для блочного поведения
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+
+  // Скрываем стандартный input, но оставляем доступным для фокуса
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+
+    // Фокус для доступности
+    &:focus-visible + .checkbox-custom__box {
+      outline: 2px solid $black;
+      outline-offset: 2px;
+    }
+
+    &:checked + .checkbox-custom__box {
+      background-color: $black;
+      border-color: transparent;
+
+      &:after {
+        opacity: 1;
+      }
+    }
+
+    &:disabled + .checkbox-custom__box {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  // Кастомный бокс чекбокса
+  &__box {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0; // Запрещаем сжиматься
+    background-color: #e4e2ec;
+    border: 1px solid #c7c7c7;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    // Галочка
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      width: 8px;
+      height: 12px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: translate(-50%, -50%) rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    // Ховер эффект
+    .checkbox-custom:hover &:not(:disabled) {
+      border-color: $black;
+    }
+  }
+
+  // Текст чекбокса
+  &__text {
+    font-size: 14px;
+    line-height: 1.4;
+    color: inherit;
+  }
+}

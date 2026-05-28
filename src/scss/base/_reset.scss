@@ -1,0 +1,428 @@
+// ============================================
+// ПОЛНЫЙ CSS СБРОС И БАЗОВЫЕ СТИЛИ
+// ============================================
+
+// Базовые настройки html
+html {
+  position: relative;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+}
+
+// Универсальный сброс box model
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+// ============================================
+// ОСНОВНЫЕ ЭЛЕМЕНТЫ
+// ============================================
+
+// Body
+body {
+  height: 100%;
+  min-height: 100vh;
+  line-height: 1.4;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+// Сброс отступов для текстовых элементов
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd,
+pre,
+hr {
+  margin: 0;
+}
+
+// Заголовки
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+// Списки
+ul,
+ol {
+  list-style: none;
+}
+
+// Цитаты
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+}
+
+// Горизонтальная линия
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+// Pre и code
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+  white-space: pre-wrap;
+}
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+// ============================================
+// ССЫЛКИ И КНОПКИ
+// ============================================
+
+// Ссылки
+a {
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  // Для мобильных устройств
+  @media (max-width: 768px) {
+    touch-action: manipulation;
+  }
+}
+
+// Кнопки
+button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+ 
+
+  // Убираем дефолтное оформление на мобильных
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+}
+
+// ============================================
+// ФОРМЫ
+// ============================================
+
+input,
+textarea,
+select,
+optgroup {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: none;
+  border-radius: 0;
+}
+
+// Текстовые поля
+input,
+textarea {
+  &::-moz-placeholder {
+    opacity: 1;
+  }
+
+  &::placeholder {
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Специфичные сбросы для input
+input {
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  // Числовые поля
+  &[type="number"] {
+    -moz-appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  // Checkbox и radio
+  &[type="checkbox"],
+  &[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  // Range
+  &[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+    }
+
+    &::-moz-range-thumb {
+      border: none;
+    }
+  }
+}
+
+// Textarea
+textarea {
+  resize: vertical;
+  overflow: auto;
+
+  &:not([rows]) {
+    min-height: 5em;
+  }
+}
+
+// Select
+select {
+  // Убираем дефолтные стрелки в IE
+  &::-ms-expand {
+    display: none;
+  }
+
+  // Исправление для Firefox
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 currentColor;
+  }
+}
+
+// Fieldset
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+// Legend
+legend {
+  display: table;
+  max-width: 100%;
+  white-space: normal;
+  color: inherit;
+  padding: 0;
+}
+
+// ============================================
+// МЕДИА И ГРАФИКА
+// ============================================
+
+// Изображения
+img,
+figure,
+picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
+
+// Остальные медиа элементы
+object,
+video,
+svg,
+canvas,
+audio,
+iframe,
+embed {
+  max-width: 100%;
+  display: block;
+  vertical-align: middle;
+}
+
+// Изображения
+img {
+  border-style: none;
+  font-style: italic; // Для alt текста
+}
+
+// Iframe
+iframe {
+  border: 0;
+}
+
+// ============================================
+// ТАБЛИЦЫ
+// ============================================
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+caption {
+  text-align: left;
+  caption-side: bottom;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0;
+}
+
+th {
+  font-weight: normal;
+}
+
+// ============================================
+// ДЕТАЛИ И СУММАРИ
+// ============================================
+
+details {
+  display: block;
+
+  & > summary {
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+// ============================================
+// ДОСТУПНОСТЬ И УТИЛИТЫ
+// ============================================
+
+// Фокус
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+// Выделение текста
+::selection {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: inherit;
+}
+
+::-moz-selection {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: inherit;
+}
+
+// Плейсхолдер
+::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #999;
+}
+
+::-ms-input-placeholder {
+  color: #999;
+}
+
+// Autofill
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: currentColor;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

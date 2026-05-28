@@ -1,0 +1,62 @@
+//Цвета
+/* Основные */
+$white: #fff;
+$black:#000;
+/* Акцентные */
+
+
+/* Текст */
+
+
+/* Границы и разделители */
+
+
+//
+$black: #202124;
+$white: #fff;
+$dark-pink: #E91E63;
+$main: #6B59CC;
+$content-width: 1170px;
+$container-offset: 15px;
+$container-width: calc($content-width + $container-offset * 2);
+$font: 'Montserrat', sans-serif;
+$shadow: 0 4px 10px 0 rgba(46, 16, 102, 0.25);
+//transitions
+$transition: 0.3s ease-in-out;
+//rounds
+$round-s: 8px;
+$round-m: 20px;
+$round-l: 32px;
+$round-full: 50%;
+//Media queriess
+$smallTablet: 500px;
+$tablet: 768px;
+$xlTablet: 1024px;
+
+$dt: 1200px;
+$transition: 0.3s ease-in-out;
+
+@mixin smallTablet {
+  @media (min-width: #{$smallTablet}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin xlTablet {
+  @media (min-width: #{$xlTablet}) {
+    @content;
+  }
+}
+
+
+@mixin dt {
+  @media (min-width: #{$dt}) {
+    @content;
+  }
+}
