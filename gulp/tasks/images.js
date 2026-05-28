@@ -1,5 +1,9 @@
 import webp from 'gulp-webp';
 import imagemin, {mozjpeg, optipng} from 'gulp-imagemin';
+import avif from 'gulp-avif';
+
+// Проверка, что файл не SVG
+const isRaster = file => !file.path.endsWith('.svg');
 
 export const images = () => {
     return app.gulp
@@ -11,30 +15,34 @@ export const images = () => {
             })
         ))
         .pipe(app.plugins.newer(app.path.build.images))
-        // Оптимизируем только растровые изображения
-        .pipe(app.plugins.if(
-            file => !file.path.endsWith('.svg'),
-            imagemin([
-                mozjpeg({quality: 80}),
-                optipng({optimizationLevel: 5})
-            ])
-        ))
+
+        // 1. Оптимизация оригиналов
+        .pipe(app.plugins.if(isRaster, imagemin([
+            mozjpeg({quality: 80, progressive: true}),
+            optipng({optimizationLevel: 5})
+        ])))
         .pipe(app.gulp.dest(app.path.build.images))
-        // Создаем WebP только для растровых изображений (не SVG)
-        .pipe(app.plugins.if(
-            file => !file.path.endsWith('.svg'),
-            app.plugins.newer({
-                dest: app.path.build.images,
-                ext: '.webp'
-            })
-        ))
-        .pipe(app.plugins.if(
-            file => !file.path.endsWith('.svg'),
-            webp()
-        ))
-        .pipe(app.plugins.if(
-            file => !file.path.endsWith('.svg'),
-            app.gulp.dest(app.path.build.images)
-        ))
+
+        .pipe(app.plugins.if(isRaster, avif({
+            quality: 65,
+            speed: 6,
+            lossless: false
+        })))
+        .pipe(app.plugins.if(isRaster, app.gulp.dest(app.path.build.images)))
+        .pipe(app.plugins.if(isRaster, avif({
+            quality: 65,
+            speed: 6,
+            lossless: false
+        })))
+        .pipe(app.plugins.if(isRaster, app.gulp.dest(app.path.build.images)))
+
+        // 3. Конвертация в WebP (fallback формат)
+        .pipe(app.plugins.if(isRaster, app.plugins.newer({
+            dest: app.path.build.images,
+            ext: '.webp'
+        })))
+        .pipe(app.plugins.if(isRaster, webp({quality: 80})))
+        .pipe(app.plugins.if(isRaster, app.gulp.dest(app.path.build.images)))
+
         .pipe(app.plugins.browsersync.stream());
 };

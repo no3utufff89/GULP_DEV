@@ -1,4 +1,4 @@
-import webpack from 'webpack-stream';
+import esbuild from 'gulp-esbuild';
 
 export const js = () => {
     return app.gulp
@@ -12,26 +12,15 @@ export const js = () => {
             )
         )
         .pipe(app.plugins.if(app.isDev, app.plugins.sourcemaps.init()))
-        .pipe(
-            webpack({
-                mode: app.isBuild ? 'production' : 'development',
-                output: {
-                    filename: 'app.js',
-                },
-                module: {
-                    rules: [
-                        {
-                            test: /\.(js)$/,
-                            exclude: /(node_modules)/,
-                            loader: 'babel-loader',
-                            options: {
-                                presets: ['@babel/env'],
-                            },
-                        },
-                    ],
-                },
-            })
-        )
+        .pipe(esbuild({
+            bundle: true,
+            format: 'iife',      // чистая обертка без eval
+            minify: false,       // не сжимаем (читаемый код)
+            sourcemap: app.isDev,
+            target: 'es2015',
+            platform: 'browser',
+            outfile: 'app.js'
+        }))
         .pipe(app.plugins.if(app.isDev, app.plugins.sourcemaps.write()))
         .pipe(app.gulp.dest(app.path.build.js))
         .pipe(app.plugins.browsersync.stream());
